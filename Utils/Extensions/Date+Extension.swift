@@ -37,4 +37,19 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    func timeAgoDisplay() -> String
+    func timeAgoDisplay() -> String {
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        
+        if secondsAgo < 60 {
+            return "\(secondsAgo) ثانية"
+        } else if secondsAgo < 3600 {
+            return "\(secondsAgo / 60) دقيقة"
+        } else if secondsAgo < 86400 {
+            return "\(secondsAgo / 3600) ساعة"
+        } else if secondsAgo < 604800 {
+            return "\(secondsAgo / 86400) يوم"
+        } else {
+            return toString(format: "dd/MM/yyyy")
+        }
+    }
+}
